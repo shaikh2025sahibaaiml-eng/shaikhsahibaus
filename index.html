@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shaikh Sahiba — stories, shayari, poems and thoughts.">
+  <title>Shaikh Sahiba — Stories & Shayari</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span>✦</span> Shaikh Sahiba</a>
+    <nav>
+      <a href="#latest">Latest</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <button class="ghost" onclick="openAdmin()">Admin</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Stories • Shayari • Poems • Thoughts</p>
+      <h1>Words that stay<br><em>with you.</em></h1>
+      <p class="hero-copy">A little corner for stories, shayari and feelings — written in Hinglish for now, with more languages coming soon.</p>
+      <a class="primary" href="#latest">Read latest posts ↓</a>
+    </section>
+
+    <section id="latest" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Fresh from the page</p>
+          <h2>Latest Posts</h2>
+        </div>
+        <input id="search" type="search" placeholder="Search posts..." oninput="renderPosts()">
+      </div>
+      <div id="postGrid" class="post-grid"></div>
+    </section>
+
+    <section id="categories" class="section categories">
+      <p class="eyebrow">Explore</p>
+      <h2>Find your mood</h2>
+      <div class="chips">
+        <button onclick="filterCategory('All')">All</button>
+        <button onclick="filterCategory('Stories')">📖 Stories</button>
+        <button onclick="filterCategory('Shayari')">🌙 Shayari</button>
+        <button onclick="filterCategory('Poems')">📝 Poems</button>
+        <button onclick="filterCategory('Quotes')">✨ Quotes</button>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Welcome to Shaikh Sahiba.</h2>
+        <p>Yahan kahaniyan, shayari, poems aur chhote-chhote thoughts milenge. Har nayi post automatically Latest Posts mein sabse upar dikhegi.</p>
+      </div>
+      <div class="about-card">✍️<br><strong>Written with feeling.</strong><br><span>Shared with the world.</span></div>
+    </section>
+  </main>
+
+  <footer>© 2026 Shaikh Sahiba · Stories, Shayari & more</footer>
+
+  <dialog id="readerDialog">
+    <article>
+      <button class="close" onclick="readerDialog.close()">×</button>
+      <p id="readerCategory" class="eyebrow"></p>
+      <h2 id="readerTitle"></h2>
+      <p id="readerDate" class="date"></p>
+      <div id="readerBody" class="reader-body"></div>
+      <div class="actions">
+        <button id="likeBtn" onclick="likeCurrent()">♡ Like <span></span></button>
+        <button onclick="shareCurrent()">↗ Share</button>
+        <button onclick="saveCurrent()">🔖 Save</button>
+      </div>
+      <hr>
+      <h3>Comments</h3>
+      <div id="comments"></div>
+      <textarea id="commentText" placeholder="Write a comment..."></textarea>
+      <button class="primary small" onclick="addComment()">Post comment</button>
+    </article>
+  </dialog>
+
+  <dialog id="adminDialog">
+    <article class="admin">
+      <button class="close" onclick="adminDialog.close()">×</button>
+      <p class="eyebrow">Admin Dashboard</p>
+      <h2>Manage Shaikh Sahiba</h2>
+      <div class="admin-tabs">
+        <button onclick="showAdminTab('posts')">Posts</button>
+        <button onclick="showAdminTab('comments')">Comments</button>
+      </div>
+
+      <div id="adminPosts">
+        <h3>New Post</h3>
+        <input id="newTitle" placeholder="Post title">
+        <select id="newCategory">
+          <option>Stories</option><option>Shayari</option><option>Poems</option><option>Quotes</option>
+        </select>
+        <textarea id="newBody" placeholder="Write your post here..."></textarea>
+        <button class="primary" onclick="publishPost()">Publish</button>
+        <p class="hint">Published posts automatically appear first on the homepage.</p>
+      </div>
+
+      <div id="adminComments" hidden>
+        <h3>Comment Moderation</h3>
+        <div id="moderationList"></div>
+        <p class="hint">Approve comments to make them public. You can also delete or block a commenter.</p>
+      </div>
+    </article>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
